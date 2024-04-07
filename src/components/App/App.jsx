@@ -3,6 +3,7 @@ import Feedback from "../Feedback/Feedback";
 import Description from "../Description/Description";
 import "./App.css";
 import Options from "../Options/Options";
+import Notification from "../Notification/Notification";
 
 function App() {
   const [clicks, setClicks] = useState({
@@ -16,13 +17,14 @@ function App() {
       ...clicks,
       [feedbackParametr]: clicks[feedbackParametr] + 1,
     });
-    console.log(clicks);
   };
+  const totalFeedback = clicks.good + clicks.neutral + clicks.bad;
+  console.log(totalFeedback);
   return (
     <>
       <Description />
       <Options onUpdateFeedback={updateFeedback} />
-      <Feedback parametrs={clicks} />
+      {totalFeedback ? <Feedback parametrs={clicks} /> : <Notification />}
     </>
   );
 }
