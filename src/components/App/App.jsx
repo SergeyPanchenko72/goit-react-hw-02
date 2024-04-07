@@ -18,13 +18,33 @@ function App() {
       [feedbackParametr]: clicks[feedbackParametr] + 1,
     });
   };
+  const onReset = () => {
+    setClicks({
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    });
+  };
   const totalFeedback = clicks.good + clicks.neutral + clicks.bad;
-  console.log(totalFeedback);
+  const positive = Math.round((clicks.good / totalFeedback) * 100);
+
   return (
     <>
       <Description />
-      <Options onUpdateFeedback={updateFeedback} />
-      {totalFeedback ? <Feedback parametrs={clicks} /> : <Notification />}
+      <Options
+        onUpdateFeedback={updateFeedback}
+        onReset={onReset}
+        totalFeedback={totalFeedback}
+      />
+      {totalFeedback ? (
+        <Feedback
+          parametrs={clicks}
+          total={totalFeedback}
+          positive={positive}
+        />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 }
