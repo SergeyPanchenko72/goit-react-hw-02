@@ -1,6 +1,7 @@
+import css from "./Option.module.css";
 export default function Options({ onUpdateFeedback, onReset, totalFeedback }) {
   return (
-    <>
+    <div className={css.container}>
       <button
         onClick={() => {
           onUpdateFeedback("good");
@@ -31,6 +32,6 @@ export default function Options({ onUpdateFeedback, onReset, totalFeedback }) {
           Reset
         </button>
       )}
-    </>
+    </div>
   );
 }
